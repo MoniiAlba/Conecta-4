@@ -19,6 +19,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setTitle("Conecta 4");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icono.png")));
     }
 
     /**

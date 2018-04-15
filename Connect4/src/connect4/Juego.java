@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -22,7 +24,9 @@ public class Juego extends javax.swing.JFrame  {
     public ImageIcon pac = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pac.png")));
     public ImageIcon red = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("r.png")));
     public ImageIcon yell = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("y.png")));
+    public ImageIcon help = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pregunta.png")));
     public int turno = (int) Math.round((Double) Math.random());  //0 = jugador, 1 = máquina
+    public int [][] matriz = new int[6][7];
     /**
      * Creates new form Juego
      */
@@ -34,6 +38,11 @@ public class Juego extends javax.swing.JFrame  {
         nivel = i;
         initComponents2();
         System.out.println(turno);
+        for(int k = 0; k < 6;k++){
+            for(int j = 0;j < 7; j++){
+                matriz[k][j] = -1;
+            }
+        }
     }
 
     /**
@@ -99,6 +108,8 @@ public class Juego extends javax.swing.JFrame  {
         turnoLabel = new javax.swing.JLabel();
         turnoIcon = new javax.swing.JLabel();
         turnoName = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -688,20 +699,44 @@ public class Juego extends javax.swing.JFrame  {
 
         turnoName.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
 
+        jButton1.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHelpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(turnoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(turnoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(turnoIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(turnoName, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(turnoIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(turnoName, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(79, 79, 79)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -715,7 +750,11 @@ public class Juego extends javax.swing.JFrame  {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(turnoName, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addGap(162, 162, 162)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -746,207 +785,263 @@ public class Juego extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB06ActionPerformed
+        matriz[5][6] = turno;
         cambiaTurno(jB06);
         jB16.setEnabled(true);
     }//GEN-LAST:event_jB06ActionPerformed
 
     private void jB40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB40ActionPerformed
+        matriz[1][0] = turno;
         cambiaTurno(jB40);
         jB50.setEnabled(true);
     }//GEN-LAST:event_jB40ActionPerformed
 
     private void jB00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB00ActionPerformed
+        matriz[5][0] = turno;
         cambiaTurno(jB00);
         jB10.setEnabled(true);
     }//GEN-LAST:event_jB00ActionPerformed
 
     private void jB01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB01ActionPerformed
+        matriz[5][1] = turno;
         cambiaTurno(jB01);
         jB11.setEnabled(true);
     }//GEN-LAST:event_jB01ActionPerformed
 
     private void jB02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB02ActionPerformed
+        matriz[5][2] = turno;
         cambiaTurno(jB02);
         jB12.setEnabled(true);
     }//GEN-LAST:event_jB02ActionPerformed
 
     private void jB03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB03ActionPerformed
+        matriz[5][3] = turno;
         cambiaTurno(jB03);
         jB13.setEnabled(true);
     }//GEN-LAST:event_jB03ActionPerformed
 
     private void jB04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB04ActionPerformed
+        matriz[5][4] = turno;
         cambiaTurno(jB04);
         jB14.setEnabled(true);
     }//GEN-LAST:event_jB04ActionPerformed
 
     private void jB05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB05ActionPerformed
+        matriz[5][5] = turno;
         cambiaTurno(jB05);
         jB15.setEnabled(true);
     }//GEN-LAST:event_jB05ActionPerformed
 
     private void jB10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB10ActionPerformed
+        matriz[4][0] = turno;
         cambiaTurno(jB10);
         jB20.setEnabled(true);
     }//GEN-LAST:event_jB10ActionPerformed
 
     private void jB11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB11ActionPerformed
+        matriz[4][1] = turno;
         cambiaTurno(jB11);
         jB21.setEnabled(true);
     }//GEN-LAST:event_jB11ActionPerformed
 
     private void jB12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB12ActionPerformed
+        matriz[4][2] = turno;
         cambiaTurno(jB12);
         jB22.setEnabled(true);
     }//GEN-LAST:event_jB12ActionPerformed
 
     private void jB13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB13ActionPerformed
+        matriz[4][3] = turno;
         cambiaTurno(jB13);
         jB23.setEnabled(true);
     }//GEN-LAST:event_jB13ActionPerformed
 
     private void jB14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB14ActionPerformed
+        matriz[4][4] = turno;
         cambiaTurno(jB14);
         jB24.setEnabled(true);
     }//GEN-LAST:event_jB14ActionPerformed
 
     private void jB15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB15ActionPerformed
+        matriz[4][5] = turno;
         cambiaTurno(jB15);
         jB25.setEnabled(true);
     }//GEN-LAST:event_jB15ActionPerformed
 
     private void jB16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB16ActionPerformed
+        matriz[4][6] = turno;
         cambiaTurno(jB16);
         jB26.setEnabled(true);
     }//GEN-LAST:event_jB16ActionPerformed
 
     private void jB20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB20ActionPerformed
+        matriz[3][0] = turno;
         cambiaTurno(jB20);
         jB30.setEnabled(true);
     }//GEN-LAST:event_jB20ActionPerformed
 
     private void jB21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB21ActionPerformed
+        matriz[3][1] = turno;
         cambiaTurno(jB21);
         jB31.setEnabled(true);
     }//GEN-LAST:event_jB21ActionPerformed
 
     private void jB22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB22ActionPerformed
+        matriz[3][2] = turno;
         cambiaTurno(jB22);
         jB32.setEnabled(true);
     }//GEN-LAST:event_jB22ActionPerformed
 
     private void jB23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB23ActionPerformed
+        matriz[3][3] = turno;
         cambiaTurno(jB23);
         jB33.setEnabled(true);
     }//GEN-LAST:event_jB23ActionPerformed
 
     private void jB24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB24ActionPerformed
+        matriz[3][4] = turno;
         cambiaTurno(jB24);
         jB34.setEnabled(true);
     }//GEN-LAST:event_jB24ActionPerformed
 
     private void jB25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB25ActionPerformed
+        matriz[3][5] = turno;
         cambiaTurno(jB25);
         jB35.setEnabled(true);
     }//GEN-LAST:event_jB25ActionPerformed
 
     private void jB26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB26ActionPerformed
+        matriz[3][6] = turno;
         cambiaTurno(jB26);
         jB36.setEnabled(true);
     }//GEN-LAST:event_jB26ActionPerformed
 
     private void jB30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB30ActionPerformed
+        matriz[2][0] = turno;
         cambiaTurno(jB30);
         jB40.setEnabled(true);
     }//GEN-LAST:event_jB30ActionPerformed
 
     private void jB31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB31ActionPerformed
+        matriz[2][1] = turno;
         cambiaTurno(jB31);
         jB41.setEnabled(true);
     }//GEN-LAST:event_jB31ActionPerformed
 
     private void jB32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB32ActionPerformed
+        matriz[2][2] = turno;
         cambiaTurno(jB32);
         jB42.setEnabled(true);
     }//GEN-LAST:event_jB32ActionPerformed
 
     private void jB33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB33ActionPerformed
+        matriz[2][3] = turno;
         cambiaTurno(jB33);
         jB43.setEnabled(true);
     }//GEN-LAST:event_jB33ActionPerformed
 
     private void jB34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB34ActionPerformed
+        matriz[2][4] = turno;
         cambiaTurno(jB34);
         jB44.setEnabled(true);
     }//GEN-LAST:event_jB34ActionPerformed
 
     private void jB35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB35ActionPerformed
+        matriz[2][5] = turno;
         cambiaTurno(jB35);
         jB45.setEnabled(true);
     }//GEN-LAST:event_jB35ActionPerformed
 
     private void jB36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB36ActionPerformed
+        matriz[2][6] = turno;
         cambiaTurno(jB36);
         jB46.setEnabled(true);
     }//GEN-LAST:event_jB36ActionPerformed
 
     private void jB41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB41ActionPerformed
+        matriz[1][1] = turno;
         cambiaTurno(jB41);
         jB51.setEnabled(true);
     }//GEN-LAST:event_jB41ActionPerformed
 
     private void jB42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB42ActionPerformed
+        matriz[1][2] = turno;
         cambiaTurno(jB42);
         jB52.setEnabled(true);
     }//GEN-LAST:event_jB42ActionPerformed
 
     private void jB43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB43ActionPerformed
+        matriz[1][3] = turno;
         cambiaTurno(jB43);
         jB53.setEnabled(true);
     }//GEN-LAST:event_jB43ActionPerformed
 
     private void jB44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB44ActionPerformed
+        matriz[1][4] = turno;
         cambiaTurno(jB44);
         jB54.setEnabled(true);
     }//GEN-LAST:event_jB44ActionPerformed
 
     private void jB45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB45ActionPerformed
+        matriz[1][5] = turno;
         cambiaTurno(jB45);
         jB55.setEnabled(true);
     }//GEN-LAST:event_jB45ActionPerformed
 
     private void jB46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB46ActionPerformed
+        matriz[1][6] = turno;
         cambiaTurno(jB46);
         jB56.setEnabled(true);
     }//GEN-LAST:event_jB46ActionPerformed
 
     private void jB50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB50ActionPerformed
+        matriz[0][0] = turno;
         cambiaTurno(jB50);
     }//GEN-LAST:event_jB50ActionPerformed
 
     private void jB51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB51ActionPerformed
+        matriz[0][1] = turno;
         cambiaTurno(jB51);
     }//GEN-LAST:event_jB51ActionPerformed
 
     private void jB52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB52ActionPerformed
+        matriz[0][2] = turno;
         cambiaTurno(jB52);
     }//GEN-LAST:event_jB52ActionPerformed
 
     private void jB53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB53ActionPerformed
+        matriz[0][3] = turno;
         cambiaTurno(jB53);
     }//GEN-LAST:event_jB53ActionPerformed
 
     private void jB54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB54ActionPerformed
+        matriz[0][4] = turno;
         cambiaTurno(jB54);
     }//GEN-LAST:event_jB54ActionPerformed
 
     private void jB55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB55ActionPerformed
+        matriz[0][5] = turno;
         cambiaTurno(jB55);
     }//GEN-LAST:event_jB55ActionPerformed
 
     private void jB56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB56ActionPerformed
+        matriz[0][6] = turno;
         cambiaTurno(jB56);
     }//GEN-LAST:event_jB56ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Menu m = new Menu();
+        m.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHelpActionPerformed
+        Instruc m = new Instruc();
+        m.setVisible(true);
+        m.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        m.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icono.png")));
+        m.setTitle("Conecta 4 - Instrucciones");
+    }//GEN-LAST:event_jHelpActionPerformed
 
     private void initComponents2(){
         initComponents();
@@ -1032,6 +1127,7 @@ public class Juego extends javax.swing.JFrame  {
             turnoIcon.setIcon(cambiaIcono(pac));
             turno = 0;
         }
+        imprimeMat();
     }
     
     public void botX(ImageIcon x, JButton a){
@@ -1094,63 +1190,19 @@ public class Juego extends javax.swing.JFrame  {
         botX(icono,jB55);
         botX(icono,jB56);
         
+        botX(cambiaIcono(help),jHelp);
         
     }
     
-    public void botonesRedondos1(){
-        Image img = icono.getImage();
-        Image newimg = img.getScaledInstance( 70, 70,  java.awt.Image.SCALE_SMOOTH ) ;  
-        icono = new ImageIcon( newimg );
-        
-        jB10.setOpaque(false);
-        jB10.setFocusPainted(false);
-        jB10.setContentAreaFilled(false);
-        jB10.setBorderPainted(false);
-        jB10.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB10.setIcon(icono);
-        
-        jB11.setOpaque(false);
-        jB11.setFocusPainted(false);
-        jB11.setContentAreaFilled(false);
-        jB11.setBorderPainted(false);
-        jB11.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB11.setIcon(icono);
-        
-        jB12.setOpaque(false);
-        jB12.setFocusPainted(false);
-        jB12.setContentAreaFilled(false);
-        jB12.setBorderPainted(false);
-        jB12.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB12.setIcon(icono);
-        
-        jB13.setOpaque(false);
-        jB13.setFocusPainted(false);
-        jB13.setContentAreaFilled(false);
-        jB13.setBorderPainted(false);
-        jB13.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB13.setIcon(icono);
-        
-        jB14.setOpaque(false);
-        jB14.setFocusPainted(false);
-        jB14.setContentAreaFilled(false);
-        jB14.setBorderPainted(false);
-        jB14.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB14.setIcon(icono);
-       
-        jB15.setOpaque(false);
-        jB15.setFocusPainted(false);
-        jB15.setContentAreaFilled(false);
-        jB15.setBorderPainted(false);
-        jB15.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB15.setIcon(icono);
-        
-        jB16.setOpaque(false);
-        jB16.setFocusPainted(false);
-        jB16.setContentAreaFilled(false);
-        jB16.setBorderPainted(false);
-        jB16.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        jB16.setIcon(icono);
+    private void imprimeMat() {
+        for(int k = 0; k < 6;k++){
+            for(int j = 0;j < 7; j++){
+                System.out.print(matriz[k][j]+" ");
+            }
+            System.out.println(" ");
+        }
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB00;
@@ -1195,6 +1247,8 @@ public class Juego extends javax.swing.JFrame  {
     private javax.swing.JButton jB54;
     private javax.swing.JButton jB55;
     private javax.swing.JButton jB56;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jHelp;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -1209,4 +1263,5 @@ public class Juego extends javax.swing.JFrame  {
     private javax.swing.JLabel turnoLabel;
     private javax.swing.JLabel turnoName;
     // End of variables declaration//GEN-END:variables
+
 }
