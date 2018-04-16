@@ -5,6 +5,7 @@
  */
 package connect4;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.BorderFactory;
@@ -27,6 +28,8 @@ public class Juego extends javax.swing.JFrame  {
     public ImageIcon help = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pregunta.png")));
     public int turno = (int) Math.round((Double) Math.random());  //0 = jugador, 1 = máquina
     public int [][] matriz = new int[6][7];
+    public JButton [][] matrizBotones;
+    
     /**
      * Creates new form Juego
      */
@@ -43,6 +46,14 @@ public class Juego extends javax.swing.JFrame  {
                 matriz[k][j] = -1;
             }
         }
+        matrizBotones = new JButton [][] {
+                                                {jB50,jB51,jB52,jB53,jB54,jB55,jB56},
+                                                {jB40,jB41,jB42,jB43,jB44,jB45,jB46},
+                                                {jB30,jB31,jB32,jB33,jB34,jB35,jB36},
+                                                {jB20,jB21,jB22,jB23,jB24,jB25,jB26},
+                                                {jB10,jB11,jB12,jB13,jB14,jB15,jB16},
+                                                {jB00,jB01,jB02,jB03,jB04,jB05,jB06}
+                                            };
     }
 
     /**
@@ -120,43 +131,97 @@ public class Juego extends javax.swing.JFrame  {
 
         jPanel3.setBackground(new java.awt.Color(159, 212, 255));
         jPanel3.setBorder(null);
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel3MouseExited(evt);
+            }
+        });
 
         jB00.setBorder(null);
+        jB00.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB00MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB00MouseExited(evt);
+            }
+        });
         jB00.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB00ActionPerformed(evt);
             }
         });
 
-        jB10.setEnabled(false);
+        jB10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB10MouseExited(evt);
+            }
+        });
         jB10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB10ActionPerformed(evt);
             }
         });
 
-        jB20.setEnabled(false);
+        jB20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB20MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB20MouseExited(evt);
+            }
+        });
         jB20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB20ActionPerformed(evt);
             }
         });
 
-        jB30.setEnabled(false);
+        jB30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB30MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB30MouseExited(evt);
+            }
+        });
         jB30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB30ActionPerformed(evt);
             }
         });
 
-        jB40.setEnabled(false);
+        jB40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB40MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB40MouseExited(evt);
+            }
+        });
         jB40.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB40ActionPerformed(evt);
             }
         });
 
-        jB50.setEnabled(false);
+        jB50.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB50MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB50MouseExited(evt);
+            }
+        });
         jB50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB50ActionPerformed(evt);
@@ -185,7 +250,7 @@ public class Juego extends javax.swing.JFrame  {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jB50, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jB40, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,48 +262,102 @@ public class Juego extends javax.swing.JFrame  {
                 .addComponent(jB10, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jB00, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(27, 27, 27))
         );
 
         jPanel4.setBackground(new java.awt.Color(159, 212, 255));
         jPanel4.setBorder(null);
         jPanel4.setPreferredSize(new java.awt.Dimension(85, 96));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel4MouseExited(evt);
+            }
+        });
 
+        jB01.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB21MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB01MouseExited(evt);
+            }
+        });
         jB01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB01ActionPerformed(evt);
             }
         });
 
-        jB11.setEnabled(false);
+        jB11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB21MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB11MouseExited(evt);
+            }
+        });
         jB11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB11ActionPerformed(evt);
             }
         });
 
-        jB21.setEnabled(false);
+        jB21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB21MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB21MouseExited(evt);
+            }
+        });
         jB21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB21ActionPerformed(evt);
             }
         });
 
-        jB31.setEnabled(false);
+        jB31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB21MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB31MouseExited(evt);
+            }
+        });
         jB31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB31ActionPerformed(evt);
             }
         });
 
-        jB41.setEnabled(false);
+        jB41.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB41MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB41MouseExited(evt);
+            }
+        });
         jB41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB41ActionPerformed(evt);
             }
         });
 
-        jB51.setEnabled(false);
+        jB51.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB51MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB51MouseExited(evt);
+            }
+        });
         jB51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB51ActionPerformed(evt);
@@ -280,42 +399,96 @@ public class Juego extends javax.swing.JFrame  {
 
         jPanel5.setBackground(new java.awt.Color(159, 212, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(85, 430));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel5MouseExited(evt);
+            }
+        });
 
+        jB02.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB02MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB02MouseExited(evt);
+            }
+        });
         jB02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB02ActionPerformed(evt);
             }
         });
 
-        jB12.setEnabled(false);
+        jB12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB12MouseExited(evt);
+            }
+        });
         jB12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB12ActionPerformed(evt);
             }
         });
 
-        jB22.setEnabled(false);
+        jB22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB22MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB22MouseExited(evt);
+            }
+        });
         jB22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB22ActionPerformed(evt);
             }
         });
 
-        jB32.setEnabled(false);
+        jB32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB32MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB32MouseExited(evt);
+            }
+        });
         jB32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB32ActionPerformed(evt);
             }
         });
 
-        jB42.setEnabled(false);
+        jB42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB42MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB42MouseExited(evt);
+            }
+        });
         jB42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB42ActionPerformed(evt);
             }
         });
 
-        jB52.setEnabled(false);
+        jB52.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB52MouseExited(evt);
+            }
+        });
         jB52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB52ActionPerformed(evt);
@@ -356,42 +529,96 @@ public class Juego extends javax.swing.JFrame  {
         );
 
         jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel6MouseExited(evt);
+            }
+        });
 
+        jB03.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB03MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB03MouseExited(evt);
+            }
+        });
         jB03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB03ActionPerformed(evt);
             }
         });
 
-        jB13.setEnabled(false);
+        jB13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB13MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB13MouseExited(evt);
+            }
+        });
         jB13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB13ActionPerformed(evt);
             }
         });
 
-        jB23.setEnabled(false);
+        jB23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB23MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB23MouseExited(evt);
+            }
+        });
         jB23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB23ActionPerformed(evt);
             }
         });
 
-        jB33.setEnabled(false);
+        jB33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB33MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB33MouseExited(evt);
+            }
+        });
         jB33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB33ActionPerformed(evt);
             }
         });
 
-        jB43.setEnabled(false);
+        jB43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB43MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB43MouseExited(evt);
+            }
+        });
         jB43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB43ActionPerformed(evt);
             }
         });
 
-        jB53.setEnabled(false);
+        jB53.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB53MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB53MouseExited(evt);
+            }
+        });
         jB53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB53ActionPerformed(evt);
@@ -433,42 +660,96 @@ public class Juego extends javax.swing.JFrame  {
 
         jPanel7.setBackground(new java.awt.Color(159, 212, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(85, 99));
+        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel7MouseExited(evt);
+            }
+        });
 
+        jB04.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB04MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB04MouseExited(evt);
+            }
+        });
         jB04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB04ActionPerformed(evt);
             }
         });
 
-        jB14.setEnabled(false);
+        jB14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB14MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB14MouseExited(evt);
+            }
+        });
         jB14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB14ActionPerformed(evt);
             }
         });
 
-        jB24.setEnabled(false);
+        jB24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB24MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB24MouseExited(evt);
+            }
+        });
         jB24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB24ActionPerformed(evt);
             }
         });
 
-        jB34.setEnabled(false);
+        jB34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB34MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB34MouseExited(evt);
+            }
+        });
         jB34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB34ActionPerformed(evt);
             }
         });
 
-        jB44.setEnabled(false);
+        jB44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB44MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB44MouseExited(evt);
+            }
+        });
         jB44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB44ActionPerformed(evt);
             }
         });
 
-        jB54.setEnabled(false);
+        jB54.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB54MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB54MouseExited(evt);
+            }
+        });
         jB54.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB54ActionPerformed(evt);
@@ -509,42 +790,96 @@ public class Juego extends javax.swing.JFrame  {
         );
 
         jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel8MouseExited(evt);
+            }
+        });
 
+        jB05.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB05MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB05MouseExited(evt);
+            }
+        });
         jB05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB05ActionPerformed(evt);
             }
         });
 
-        jB15.setEnabled(false);
+        jB15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB15MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB15MouseExited(evt);
+            }
+        });
         jB15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB15ActionPerformed(evt);
             }
         });
 
-        jB25.setEnabled(false);
+        jB25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB25MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB25MouseExited(evt);
+            }
+        });
         jB25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB25ActionPerformed(evt);
             }
         });
 
-        jB35.setEnabled(false);
+        jB35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB35MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB35MouseExited(evt);
+            }
+        });
         jB35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB35ActionPerformed(evt);
             }
         });
 
-        jB45.setEnabled(false);
+        jB45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB45MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB45MouseExited(evt);
+            }
+        });
         jB45.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB45ActionPerformed(evt);
             }
         });
 
-        jB55.setEnabled(false);
+        jB55.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB55MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB55MouseExited(evt);
+            }
+        });
         jB55.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB55ActionPerformed(evt);
@@ -585,42 +920,96 @@ public class Juego extends javax.swing.JFrame  {
         );
 
         jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel9MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel9MouseExited(evt);
+            }
+        });
 
+        jB06.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB06MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB06MouseExited(evt);
+            }
+        });
         jB06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB06ActionPerformed(evt);
             }
         });
 
-        jB16.setEnabled(false);
+        jB16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB16MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB16MouseExited(evt);
+            }
+        });
         jB16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB16ActionPerformed(evt);
             }
         });
 
-        jB26.setEnabled(false);
+        jB26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB26MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB26MouseExited(evt);
+            }
+        });
         jB26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB26ActionPerformed(evt);
             }
         });
 
-        jB36.setEnabled(false);
+        jB36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB36MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB36MouseExited(evt);
+            }
+        });
         jB36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB36ActionPerformed(evt);
             }
         });
 
-        jB46.setEnabled(false);
+        jB46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB46MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB46MouseExited(evt);
+            }
+        });
         jB46.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB46ActionPerformed(evt);
             }
         });
 
-        jB56.setEnabled(false);
+        jB56.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jB56MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jB56MouseExited(evt);
+            }
+        });
         jB56.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB56ActionPerformed(evt);
@@ -689,8 +1078,8 @@ public class Juego extends javax.swing.JFrame  {
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -785,248 +1174,293 @@ public class Juego extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jB06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB06ActionPerformed
-        matriz[5][6] = turno;
-        cambiaTurno(jB06);
-        jB16.setEnabled(true);
+        checaColumna(6);
+        //matriz[5][6] = turno;
+        //cambiaTurno(jB06);
+        //jB16.setEnabled(true);
     }//GEN-LAST:event_jB06ActionPerformed
 
     private void jB40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB40ActionPerformed
+        checaColumna(0);/*
         matriz[1][0] = turno;
         cambiaTurno(jB40);
         jB50.setEnabled(true);
+        */
     }//GEN-LAST:event_jB40ActionPerformed
 
     private void jB00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB00ActionPerformed
+        checaColumna(0);/*
         matriz[5][0] = turno;
         cambiaTurno(jB00);
         jB10.setEnabled(true);
+        */
     }//GEN-LAST:event_jB00ActionPerformed
 
     private void jB01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB01ActionPerformed
+        checaColumna(1);/*
         matriz[5][1] = turno;
         cambiaTurno(jB01);
         jB11.setEnabled(true);
+        */
     }//GEN-LAST:event_jB01ActionPerformed
 
     private void jB02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB02ActionPerformed
-        matriz[5][2] = turno;
+        checaColumna(2);/*
+        [5][2] = turno;
         cambiaTurno(jB02);
-        jB12.setEnabled(true);
+        jB12.setEnabled(true);*/
     }//GEN-LAST:event_jB02ActionPerformed
 
     private void jB03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB03ActionPerformed
-        matriz[5][3] = turno;
+        checaColumna(3);
+        /*matriz[5][3] = turno;
         cambiaTurno(jB03);
-        jB13.setEnabled(true);
+        jB13.setEnabled(true);*/
     }//GEN-LAST:event_jB03ActionPerformed
 
     private void jB04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB04ActionPerformed
+        checaColumna(4);/*
         matriz[5][4] = turno;
         cambiaTurno(jB04);
-        jB14.setEnabled(true);
+        jB14.setEnabled(true);*/
     }//GEN-LAST:event_jB04ActionPerformed
 
     private void jB05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB05ActionPerformed
+        checaColumna(5);/*
         matriz[5][5] = turno;
         cambiaTurno(jB05);
-        jB15.setEnabled(true);
+        jB15.setEnabled(true);*/
     }//GEN-LAST:event_jB05ActionPerformed
 
     private void jB10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB10ActionPerformed
+        checaColumna(0);/*
         matriz[4][0] = turno;
         cambiaTurno(jB10);
-        jB20.setEnabled(true);
+        jB20.setEnabled(true);*/
     }//GEN-LAST:event_jB10ActionPerformed
 
     private void jB11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB11ActionPerformed
+        checaColumna(1);/*
         matriz[4][1] = turno;
         cambiaTurno(jB11);
-        jB21.setEnabled(true);
+        jB21.setEnabled(true);*/
     }//GEN-LAST:event_jB11ActionPerformed
 
     private void jB12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB12ActionPerformed
+        checaColumna(2);/*
         matriz[4][2] = turno;
         cambiaTurno(jB12);
-        jB22.setEnabled(true);
+        jB22.setEnabled(true);*/
     }//GEN-LAST:event_jB12ActionPerformed
 
     private void jB13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB13ActionPerformed
+        checaColumna(3);/*
         matriz[4][3] = turno;
         cambiaTurno(jB13);
-        jB23.setEnabled(true);
+        jB23.setEnabled(true);*/
     }//GEN-LAST:event_jB13ActionPerformed
 
     private void jB14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB14ActionPerformed
+        checaColumna(4);/*
         matriz[4][4] = turno;
         cambiaTurno(jB14);
-        jB24.setEnabled(true);
+        jB24.setEnabled(true);*/
     }//GEN-LAST:event_jB14ActionPerformed
 
     private void jB15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB15ActionPerformed
+        checaColumna(5);/*
         matriz[4][5] = turno;
         cambiaTurno(jB15);
-        jB25.setEnabled(true);
+        jB25.setEnabled(true);*/
     }//GEN-LAST:event_jB15ActionPerformed
 
     private void jB16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB16ActionPerformed
+        checaColumna(6);/*
         matriz[4][6] = turno;
         cambiaTurno(jB16);
-        jB26.setEnabled(true);
+        jB26.setEnabled(true);*/
     }//GEN-LAST:event_jB16ActionPerformed
 
     private void jB20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB20ActionPerformed
+        checaColumna(0);/*
         matriz[3][0] = turno;
         cambiaTurno(jB20);
-        jB30.setEnabled(true);
+        jB30.setEnabled(true);*/
     }//GEN-LAST:event_jB20ActionPerformed
 
     private void jB21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB21ActionPerformed
+        checaColumna(1);/*
         matriz[3][1] = turno;
         cambiaTurno(jB21);
-        jB31.setEnabled(true);
+        jB31.setEnabled(true);*/
     }//GEN-LAST:event_jB21ActionPerformed
 
     private void jB22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB22ActionPerformed
+        checaColumna(2);/*
         matriz[3][2] = turno;
         cambiaTurno(jB22);
-        jB32.setEnabled(true);
+        jB32.setEnabled(true);*/
     }//GEN-LAST:event_jB22ActionPerformed
 
     private void jB23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB23ActionPerformed
+        checaColumna(3);/*
         matriz[3][3] = turno;
         cambiaTurno(jB23);
-        jB33.setEnabled(true);
+        jB33.setEnabled(true);*/
     }//GEN-LAST:event_jB23ActionPerformed
 
     private void jB24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB24ActionPerformed
+        checaColumna(4);/*
         matriz[3][4] = turno;
         cambiaTurno(jB24);
-        jB34.setEnabled(true);
+        jB34.setEnabled(true);*/
     }//GEN-LAST:event_jB24ActionPerformed
 
     private void jB25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB25ActionPerformed
+        checaColumna(5);/*
         matriz[3][5] = turno;
         cambiaTurno(jB25);
-        jB35.setEnabled(true);
+        jB35.setEnabled(true);*/
     }//GEN-LAST:event_jB25ActionPerformed
 
     private void jB26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB26ActionPerformed
+        checaColumna(6);/*
         matriz[3][6] = turno;
         cambiaTurno(jB26);
-        jB36.setEnabled(true);
+        jB36.setEnabled(true);*/
     }//GEN-LAST:event_jB26ActionPerformed
 
     private void jB30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB30ActionPerformed
+        checaColumna(0);/*
         matriz[2][0] = turno;
         cambiaTurno(jB30);
-        jB40.setEnabled(true);
+        jB40.setEnabled(true);*/
     }//GEN-LAST:event_jB30ActionPerformed
 
     private void jB31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB31ActionPerformed
+        checaColumna(1);/*
         matriz[2][1] = turno;
         cambiaTurno(jB31);
-        jB41.setEnabled(true);
+        jB41.setEnabled(true);*/
     }//GEN-LAST:event_jB31ActionPerformed
 
     private void jB32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB32ActionPerformed
+        checaColumna(2);/*
         matriz[2][2] = turno;
         cambiaTurno(jB32);
-        jB42.setEnabled(true);
+        jB42.setEnabled(true);*/
     }//GEN-LAST:event_jB32ActionPerformed
 
     private void jB33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB33ActionPerformed
+        checaColumna(3);/*
         matriz[2][3] = turno;
         cambiaTurno(jB33);
-        jB43.setEnabled(true);
+        jB43.setEnabled(true);*/
     }//GEN-LAST:event_jB33ActionPerformed
 
     private void jB34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB34ActionPerformed
+        checaColumna(4);/*
         matriz[2][4] = turno;
         cambiaTurno(jB34);
-        jB44.setEnabled(true);
+        jB44.setEnabled(true);*/
     }//GEN-LAST:event_jB34ActionPerformed
 
     private void jB35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB35ActionPerformed
+        checaColumna(5);/*
         matriz[2][5] = turno;
         cambiaTurno(jB35);
-        jB45.setEnabled(true);
+        jB45.setEnabled(true);*/
     }//GEN-LAST:event_jB35ActionPerformed
 
     private void jB36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB36ActionPerformed
+        checaColumna(6);/*
         matriz[2][6] = turno;
         cambiaTurno(jB36);
-        jB46.setEnabled(true);
+        jB46.setEnabled(true);*/
     }//GEN-LAST:event_jB36ActionPerformed
 
     private void jB41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB41ActionPerformed
+        checaColumna(1);/*
         matriz[1][1] = turno;
         cambiaTurno(jB41);
-        jB51.setEnabled(true);
+        jB51.setEnabled(true);*/
     }//GEN-LAST:event_jB41ActionPerformed
 
     private void jB42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB42ActionPerformed
+        checaColumna(2);/*
         matriz[1][2] = turno;
         cambiaTurno(jB42);
-        jB52.setEnabled(true);
+        jB52.setEnabled(true);*/
     }//GEN-LAST:event_jB42ActionPerformed
 
     private void jB43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB43ActionPerformed
+        checaColumna(3);/*
         matriz[1][3] = turno;
         cambiaTurno(jB43);
-        jB53.setEnabled(true);
+        jB53.setEnabled(true);*/
     }//GEN-LAST:event_jB43ActionPerformed
 
     private void jB44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB44ActionPerformed
+        checaColumna(4);/*
         matriz[1][4] = turno;
         cambiaTurno(jB44);
-        jB54.setEnabled(true);
+        jB54.setEnabled(true);*/
     }//GEN-LAST:event_jB44ActionPerformed
 
     private void jB45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB45ActionPerformed
+        checaColumna(5);/*
         matriz[1][5] = turno;
         cambiaTurno(jB45);
-        jB55.setEnabled(true);
+        jB55.setEnabled(true);*/
     }//GEN-LAST:event_jB45ActionPerformed
 
     private void jB46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB46ActionPerformed
+        checaColumna(6);/*
         matriz[1][6] = turno;
         cambiaTurno(jB46);
-        jB56.setEnabled(true);
+        jB56.setEnabled(true);*/
     }//GEN-LAST:event_jB46ActionPerformed
 
     private void jB50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB50ActionPerformed
+        checaColumna(0);/*
         matriz[0][0] = turno;
-        cambiaTurno(jB50);
+        cambiaTurno(jB50);*/
     }//GEN-LAST:event_jB50ActionPerformed
 
     private void jB51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB51ActionPerformed
+        checaColumna(1);/*
         matriz[0][1] = turno;
-        cambiaTurno(jB51);
+        cambiaTurno(jB51);*/
     }//GEN-LAST:event_jB51ActionPerformed
 
     private void jB52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB52ActionPerformed
+        checaColumna(2);/*
         matriz[0][2] = turno;
-        cambiaTurno(jB52);
+        cambiaTurno(jB52);*/
     }//GEN-LAST:event_jB52ActionPerformed
 
     private void jB53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB53ActionPerformed
+        checaColumna(3);/*
         matriz[0][3] = turno;
-        cambiaTurno(jB53);
+        cambiaTurno(jB53);*/
     }//GEN-LAST:event_jB53ActionPerformed
 
     private void jB54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB54ActionPerformed
+        checaColumna(4);/*
         matriz[0][4] = turno;
-        cambiaTurno(jB54);
+        cambiaTurno(jB54);*/
     }//GEN-LAST:event_jB54ActionPerformed
 
     private void jB55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB55ActionPerformed
+        checaColumna(5);/*
         matriz[0][5] = turno;
-        cambiaTurno(jB55);
+        cambiaTurno(jB55);*/
     }//GEN-LAST:event_jB55ActionPerformed
 
     private void jB56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB56ActionPerformed
+        checaColumna(6);/*
         matriz[0][6] = turno;
-        cambiaTurno(jB56);
+        cambiaTurno(jB56);*/
     }//GEN-LAST:event_jB56ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1042,6 +1476,410 @@ public class Juego extends javax.swing.JFrame  {
         m.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icono.png")));
         m.setTitle("Conecta 4 - Instrucciones");
     }//GEN-LAST:event_jHelpActionPerformed
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        checaColumna(0);
+    }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        checaColumna(1);
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        checaColumna(2);
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        checaColumna(3);
+    }//GEN-LAST:event_jPanel6MouseClicked
+
+    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
+        checaColumna(4);
+    }//GEN-LAST:event_jPanel7MouseClicked
+
+    private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
+        checaColumna(5);
+    }//GEN-LAST:event_jPanel8MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        checaColumna(6);
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel3MouseEntered
+
+    private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel3MouseExited
+
+    private void jB50MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB50MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB50MouseEntered
+
+    private void jB40MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB40MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB40MouseEntered
+
+    private void jB30MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB30MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB30MouseEntered
+
+    private void jB20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB20MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB20MouseEntered
+
+    private void jB10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB10MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB10MouseEntered
+
+    private void jB00MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB00MouseEntered
+        jPanel3.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB00MouseEntered
+
+    private void jPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseEntered
+        jPanel4.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel4MouseEntered
+
+    private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel4MouseExited
+
+    private void jB51MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB51MouseEntered
+        jPanel4.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB51MouseEntered
+
+    private void jB21MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB21MouseEntered
+        jPanel4.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB21MouseEntered
+
+    private void jB41MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB41MouseEntered
+        jPanel4.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB41MouseEntered
+
+    private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
+        jPanel5.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel5MouseEntered
+
+    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel5MouseExited
+
+    private void jB50MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB50MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB50MouseExited
+
+    private void jB40MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB40MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB40MouseExited
+
+    private void jB30MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB30MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB30MouseExited
+
+    private void jB20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB20MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB20MouseExited
+
+    private void jB10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB10MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB10MouseExited
+
+    private void jB00MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB00MouseExited
+        jPanel3.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB00MouseExited
+
+    private void jB51MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB51MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB51MouseExited
+
+    private void jB41MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB41MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB41MouseExited
+
+    private void jB31MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB31MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB31MouseExited
+
+    private void jB21MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB21MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB21MouseExited
+
+    private void jB11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB11MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB11MouseExited
+
+    private void jB01MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB01MouseExited
+        jPanel4.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB01MouseExited
+
+    private void jB52MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB52MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB52MouseExited
+
+    private void jB42MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB42MouseEntered
+        jPanel5.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB42MouseEntered
+
+    private void jB42MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB42MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB42MouseExited
+
+    private void jB32MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB32MouseEntered
+        jPanel5.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB32MouseEntered
+
+    private void jB32MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB32MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB32MouseExited
+
+    private void jB22MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB22MouseEntered
+        jPanel5.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB22MouseEntered
+
+    private void jB22MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB22MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB22MouseExited
+
+    private void jB12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB12MouseEntered
+        jPanel5.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB12MouseEntered
+
+    private void jB12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB12MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB12MouseExited
+
+    private void jB02MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB02MouseEntered
+        jPanel5.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB02MouseEntered
+
+    private void jB02MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB02MouseExited
+        jPanel5.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB02MouseExited
+
+    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel6MouseEntered
+
+    private void jB53MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB53MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB53MouseEntered
+
+    private void jB43MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB43MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB43MouseEntered
+
+    private void jB33MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB33MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB33MouseEntered
+
+    private void jB23MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB23MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB23MouseEntered
+
+    private void jB13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB13MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB13MouseEntered
+
+    private void jB03MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB03MouseEntered
+        jPanel6.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB03MouseEntered
+
+    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel6MouseExited
+
+    private void jB53MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB53MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB53MouseExited
+
+    private void jB43MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB43MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB43MouseExited
+
+    private void jB33MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB33MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB33MouseExited
+
+    private void jB23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB23MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB23MouseExited
+
+    private void jB13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB13MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB13MouseExited
+
+    private void jB03MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB03MouseExited
+        jPanel6.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB03MouseExited
+
+    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel7MouseEntered
+
+    private void jB54MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB54MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB54MouseEntered
+
+    private void jB44MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB44MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB44MouseEntered
+
+    private void jB34MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB34MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB34MouseEntered
+
+    private void jB24MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB24MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB24MouseEntered
+
+    private void jB14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB14MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB14MouseEntered
+
+    private void jB04MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB04MouseEntered
+        jPanel7.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB04MouseEntered
+
+    private void jB04MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB04MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB04MouseExited
+
+    private void jB14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB14MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB14MouseExited
+
+    private void jB24MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB24MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB24MouseExited
+
+    private void jB34MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB34MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB34MouseExited
+
+    private void jB44MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB44MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB44MouseExited
+
+    private void jB54MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB54MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB54MouseExited
+
+    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
+        jPanel7.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel7MouseExited
+
+    private void jPanel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel8MouseEntered
+
+    private void jPanel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel8MouseExited
+
+    private void jB55MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB55MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB55MouseEntered
+
+    private void jB55MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB55MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB55MouseExited
+
+    private void jB45MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB45MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB45MouseEntered
+
+    private void jB45MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB45MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB45MouseExited
+
+    private void jB35MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB35MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB35MouseEntered
+
+    private void jB35MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB35MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB35MouseExited
+
+    private void jB25MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB25MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB25MouseEntered
+
+    private void jB25MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB25MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB25MouseExited
+
+    private void jB15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB15MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB15MouseEntered
+
+    private void jB15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB15MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB15MouseExited
+
+    private void jB05MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB05MouseEntered
+        jPanel8.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB05MouseEntered
+
+    private void jB05MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB05MouseExited
+        jPanel8.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB05MouseExited
+
+    private void jPanel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jPanel9MouseEntered
+
+    private void jPanel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jPanel9MouseExited
+
+    private void jB56MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB56MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB56MouseEntered
+
+    private void jB56MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB56MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB56MouseExited
+
+    private void jB46MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB46MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB46MouseEntered
+
+    private void jB46MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB46MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB46MouseExited
+
+    private void jB36MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB36MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB36MouseEntered
+
+    private void jB36MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB36MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB36MouseExited
+
+    private void jB26MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB26MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB26MouseEntered
+
+    private void jB26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB26MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB26MouseExited
+
+    private void jB16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB16MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB16MouseEntered
+
+    private void jB16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB16MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB16MouseExited
+
+    private void jB06MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB06MouseEntered
+        jPanel9.setBackground(new java.awt.Color(119, 255, 140));
+    }//GEN-LAST:event_jB06MouseEntered
+
+    private void jB06MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB06MouseExited
+        jPanel9.setBackground(new java.awt.Color(159, 212, 255));
+    }//GEN-LAST:event_jB06MouseExited
 
     private void initComponents2(){
         initComponents();
@@ -1068,6 +1906,7 @@ public class Juego extends javax.swing.JFrame  {
             turnoName.setText("Computadora");
             turnoIcon.setIcon(cambiaIcono(fant));
         }
+        
     }
     /**
      * @param args the command line arguments
@@ -1201,6 +2040,30 @@ public class Juego extends javax.swing.JFrame  {
             }
             System.out.println(" ");
         }
+        System.out.println("===============================");
+    }
+    
+    public void checaColumna(int col){ //col va de 0 a 6        
+        int fila = 5;
+        if(matriz[fila][col] == -1){ // no hay nada
+            //ponemos algo
+            matriz[fila][col] = turno;
+            cambiaTurno(matrizBotones[fila][col]);
+        }else{
+            boolean sigue=true;
+            while(sigue){
+                if(fila>0){
+                    fila--;
+                    if(matriz[fila][col]==-1){ //no hay algo                     
+                        matriz[fila][col] = turno;
+                        cambiaTurno(matrizBotones[fila][col]);
+                        sigue = false;
+                    }
+                }else{
+                    sigue = false;
+                }
+            }
+        }
     }
   
 
@@ -1249,7 +2112,6 @@ public class Juego extends javax.swing.JFrame  {
     private javax.swing.JButton jB56;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jHelp;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

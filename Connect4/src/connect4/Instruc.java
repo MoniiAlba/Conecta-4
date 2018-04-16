@@ -49,9 +49,9 @@ public class Instruc extends javax.swing.JFrame {
         jLabel3.setBounds(60, 60, 140, 40);
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel4.setText("Seleccione el círculo donde desee");
+        jLabel4.setText("Seleccione la columna donde desee");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 20, 280, 50);
+        jLabel4.setBounds(30, 20, 320, 50);
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel5.setText("Seleccionar el botón de 'Regresar'");
