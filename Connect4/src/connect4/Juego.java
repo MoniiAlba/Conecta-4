@@ -1175,292 +1175,170 @@ public class Juego extends javax.swing.JFrame  {
 
     private void jB06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB06ActionPerformed
         checaColumna(6);
-        //matriz[5][6] = turno;
-        //cambiaTurno(jB06);
-        //jB16.setEnabled(true);
     }//GEN-LAST:event_jB06ActionPerformed
 
     private void jB40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB40ActionPerformed
-        checaColumna(0);/*
-        matriz[1][0] = turno;
-        cambiaTurno(jB40);
-        jB50.setEnabled(true);
-        */
+        checaColumna(0);
     }//GEN-LAST:event_jB40ActionPerformed
 
     private void jB00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB00ActionPerformed
-        checaColumna(0);/*
-        matriz[5][0] = turno;
-        cambiaTurno(jB00);
-        jB10.setEnabled(true);
-        */
+        checaColumna(0);
     }//GEN-LAST:event_jB00ActionPerformed
 
     private void jB01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB01ActionPerformed
-        checaColumna(1);/*
-        matriz[5][1] = turno;
-        cambiaTurno(jB01);
-        jB11.setEnabled(true);
-        */
+        checaColumna(1);
     }//GEN-LAST:event_jB01ActionPerformed
 
     private void jB02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB02ActionPerformed
-        checaColumna(2);/*
-        [5][2] = turno;
-        cambiaTurno(jB02);
-        jB12.setEnabled(true);*/
+        checaColumna(2);
     }//GEN-LAST:event_jB02ActionPerformed
 
     private void jB03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB03ActionPerformed
         checaColumna(3);
-        /*matriz[5][3] = turno;
-        cambiaTurno(jB03);
-        jB13.setEnabled(true);*/
     }//GEN-LAST:event_jB03ActionPerformed
 
     private void jB04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB04ActionPerformed
-        checaColumna(4);/*
-        matriz[5][4] = turno;
-        cambiaTurno(jB04);
-        jB14.setEnabled(true);*/
+        checaColumna(4);
     }//GEN-LAST:event_jB04ActionPerformed
 
     private void jB05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB05ActionPerformed
-        checaColumna(5);/*
-        matriz[5][5] = turno;
-        cambiaTurno(jB05);
-        jB15.setEnabled(true);*/
+        checaColumna(5);
     }//GEN-LAST:event_jB05ActionPerformed
 
     private void jB10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB10ActionPerformed
-        checaColumna(0);/*
-        matriz[4][0] = turno;
-        cambiaTurno(jB10);
-        jB20.setEnabled(true);*/
+        checaColumna(0);
     }//GEN-LAST:event_jB10ActionPerformed
 
     private void jB11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB11ActionPerformed
-        checaColumna(1);/*
-        matriz[4][1] = turno;
-        cambiaTurno(jB11);
-        jB21.setEnabled(true);*/
+        checaColumna(1);
     }//GEN-LAST:event_jB11ActionPerformed
 
     private void jB12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB12ActionPerformed
-        checaColumna(2);/*
-        matriz[4][2] = turno;
-        cambiaTurno(jB12);
-        jB22.setEnabled(true);*/
+        checaColumna(2);
     }//GEN-LAST:event_jB12ActionPerformed
 
     private void jB13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB13ActionPerformed
-        checaColumna(3);/*
-        matriz[4][3] = turno;
-        cambiaTurno(jB13);
-        jB23.setEnabled(true);*/
+        checaColumna(3);
     }//GEN-LAST:event_jB13ActionPerformed
 
     private void jB14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB14ActionPerformed
-        checaColumna(4);/*
-        matriz[4][4] = turno;
-        cambiaTurno(jB14);
-        jB24.setEnabled(true);*/
+        checaColumna(4);
     }//GEN-LAST:event_jB14ActionPerformed
 
     private void jB15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB15ActionPerformed
-        checaColumna(5);/*
-        matriz[4][5] = turno;
-        cambiaTurno(jB15);
-        jB25.setEnabled(true);*/
+        checaColumna(5);
     }//GEN-LAST:event_jB15ActionPerformed
 
     private void jB16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB16ActionPerformed
-        checaColumna(6);/*
-        matriz[4][6] = turno;
-        cambiaTurno(jB16);
-        jB26.setEnabled(true);*/
+        checaColumna(6);
     }//GEN-LAST:event_jB16ActionPerformed
 
     private void jB20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB20ActionPerformed
-        checaColumna(0);/*
-        matriz[3][0] = turno;
-        cambiaTurno(jB20);
-        jB30.setEnabled(true);*/
+        checaColumna(0);
     }//GEN-LAST:event_jB20ActionPerformed
 
     private void jB21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB21ActionPerformed
-        checaColumna(1);/*
-        matriz[3][1] = turno;
-        cambiaTurno(jB21);
-        jB31.setEnabled(true);*/
+        checaColumna(1);
     }//GEN-LAST:event_jB21ActionPerformed
 
     private void jB22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB22ActionPerformed
-        checaColumna(2);/*
-        matriz[3][2] = turno;
-        cambiaTurno(jB22);
-        jB32.setEnabled(true);*/
+        checaColumna(2);
     }//GEN-LAST:event_jB22ActionPerformed
 
     private void jB23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB23ActionPerformed
-        checaColumna(3);/*
-        matriz[3][3] = turno;
-        cambiaTurno(jB23);
-        jB33.setEnabled(true);*/
+        checaColumna(3);
     }//GEN-LAST:event_jB23ActionPerformed
 
     private void jB24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB24ActionPerformed
-        checaColumna(4);/*
-        matriz[3][4] = turno;
-        cambiaTurno(jB24);
-        jB34.setEnabled(true);*/
+        checaColumna(4);
     }//GEN-LAST:event_jB24ActionPerformed
 
     private void jB25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB25ActionPerformed
-        checaColumna(5);/*
-        matriz[3][5] = turno;
-        cambiaTurno(jB25);
-        jB35.setEnabled(true);*/
+        checaColumna(5);
     }//GEN-LAST:event_jB25ActionPerformed
 
     private void jB26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB26ActionPerformed
-        checaColumna(6);/*
-        matriz[3][6] = turno;
-        cambiaTurno(jB26);
-        jB36.setEnabled(true);*/
+        checaColumna(6);
     }//GEN-LAST:event_jB26ActionPerformed
 
     private void jB30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB30ActionPerformed
-        checaColumna(0);/*
-        matriz[2][0] = turno;
-        cambiaTurno(jB30);
-        jB40.setEnabled(true);*/
+        checaColumna(0);
     }//GEN-LAST:event_jB30ActionPerformed
 
     private void jB31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB31ActionPerformed
-        checaColumna(1);/*
-        matriz[2][1] = turno;
-        cambiaTurno(jB31);
-        jB41.setEnabled(true);*/
+        checaColumna(1);
     }//GEN-LAST:event_jB31ActionPerformed
 
     private void jB32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB32ActionPerformed
-        checaColumna(2);/*
-        matriz[2][2] = turno;
-        cambiaTurno(jB32);
-        jB42.setEnabled(true);*/
+        checaColumna(2);
     }//GEN-LAST:event_jB32ActionPerformed
 
     private void jB33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB33ActionPerformed
-        checaColumna(3);/*
-        matriz[2][3] = turno;
-        cambiaTurno(jB33);
-        jB43.setEnabled(true);*/
+        checaColumna(3);
     }//GEN-LAST:event_jB33ActionPerformed
 
     private void jB34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB34ActionPerformed
-        checaColumna(4);/*
-        matriz[2][4] = turno;
-        cambiaTurno(jB34);
-        jB44.setEnabled(true);*/
+        checaColumna(4);
     }//GEN-LAST:event_jB34ActionPerformed
 
     private void jB35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB35ActionPerformed
-        checaColumna(5);/*
-        matriz[2][5] = turno;
-        cambiaTurno(jB35);
-        jB45.setEnabled(true);*/
+        checaColumna(5);
     }//GEN-LAST:event_jB35ActionPerformed
 
     private void jB36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB36ActionPerformed
-        checaColumna(6);/*
-        matriz[2][6] = turno;
-        cambiaTurno(jB36);
-        jB46.setEnabled(true);*/
+        checaColumna(6);
     }//GEN-LAST:event_jB36ActionPerformed
 
     private void jB41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB41ActionPerformed
-        checaColumna(1);/*
-        matriz[1][1] = turno;
-        cambiaTurno(jB41);
-        jB51.setEnabled(true);*/
+        checaColumna(1);
     }//GEN-LAST:event_jB41ActionPerformed
 
     private void jB42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB42ActionPerformed
-        checaColumna(2);/*
-        matriz[1][2] = turno;
-        cambiaTurno(jB42);
-        jB52.setEnabled(true);*/
+        checaColumna(2);
     }//GEN-LAST:event_jB42ActionPerformed
 
     private void jB43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB43ActionPerformed
-        checaColumna(3);/*
-        matriz[1][3] = turno;
-        cambiaTurno(jB43);
-        jB53.setEnabled(true);*/
+        checaColumna(3);
     }//GEN-LAST:event_jB43ActionPerformed
 
     private void jB44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB44ActionPerformed
-        checaColumna(4);/*
-        matriz[1][4] = turno;
-        cambiaTurno(jB44);
-        jB54.setEnabled(true);*/
+        checaColumna(4);
     }//GEN-LAST:event_jB44ActionPerformed
 
     private void jB45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB45ActionPerformed
-        checaColumna(5);/*
-        matriz[1][5] = turno;
-        cambiaTurno(jB45);
-        jB55.setEnabled(true);*/
+        checaColumna(5);
     }//GEN-LAST:event_jB45ActionPerformed
 
     private void jB46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB46ActionPerformed
-        checaColumna(6);/*
-        matriz[1][6] = turno;
-        cambiaTurno(jB46);
-        jB56.setEnabled(true);*/
+        checaColumna(6);
     }//GEN-LAST:event_jB46ActionPerformed
 
     private void jB50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB50ActionPerformed
-        checaColumna(0);/*
-        matriz[0][0] = turno;
-        cambiaTurno(jB50);*/
+        checaColumna(0);
     }//GEN-LAST:event_jB50ActionPerformed
 
     private void jB51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB51ActionPerformed
-        checaColumna(1);/*
-        matriz[0][1] = turno;
-        cambiaTurno(jB51);*/
+        checaColumna(1);
     }//GEN-LAST:event_jB51ActionPerformed
 
     private void jB52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB52ActionPerformed
-        checaColumna(2);/*
-        matriz[0][2] = turno;
-        cambiaTurno(jB52);*/
+        checaColumna(2);
     }//GEN-LAST:event_jB52ActionPerformed
 
     private void jB53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB53ActionPerformed
-        checaColumna(3);/*
-        matriz[0][3] = turno;
-        cambiaTurno(jB53);*/
+        checaColumna(3);
     }//GEN-LAST:event_jB53ActionPerformed
 
     private void jB54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB54ActionPerformed
-        checaColumna(4);/*
-        matriz[0][4] = turno;
-        cambiaTurno(jB54);*/
+        checaColumna(4);
     }//GEN-LAST:event_jB54ActionPerformed
 
     private void jB55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB55ActionPerformed
-        checaColumna(5);/*
-        matriz[0][5] = turno;
-        cambiaTurno(jB55);*/
+        checaColumna(5);
     }//GEN-LAST:event_jB55ActionPerformed
 
     private void jB56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB56ActionPerformed
-        checaColumna(6);/*
-        matriz[0][6] = turno;
-        cambiaTurno(jB56);*/
+        checaColumna(6);
     }//GEN-LAST:event_jB56ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
