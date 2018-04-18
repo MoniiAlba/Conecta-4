@@ -33,12 +33,14 @@ public class Juego extends javax.swing.JFrame  {
     public ImageIcon fant = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ghost.png")));
     public ImageIcon pac = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pac.png")));
     public ImageIcon fantAzul = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blue.png")));
+    public ImageIcon pacD = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pacDead.png")));
     public ImageIcon red = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("r.png")));
     public ImageIcon yell = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("y.png")));
     public ImageIcon help = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pregunta.png")));
     public int turno = (int) Math.round((Double) Math.random());  //0 = jugador, 1 = máquina
     public int [][] matriz = new int[6][7];
     public JButton [][] matrizBotones;
+    public boolean sigueJugando = true;
     
     /**
      * Creates new form Juego
@@ -56,6 +58,8 @@ public class Juego extends javax.swing.JFrame  {
                 matriz[k][j] = -1;
             }
         }
+        EscribirArchivo esc = new EscribirArchivo(matriz, nivel);
+        esc.creaArchivo(); 
         matrizBotones = new JButton [][] {
                                                 {jB50,jB51,jB52,jB53,jB54,jB55,jB56},
                                                 {jB40,jB41,jB42,jB43,jB44,jB45,jB46},
@@ -66,7 +70,7 @@ public class Juego extends javax.swing.JFrame  {
                                             };
         //los nombres de los botones están al volteados
         if(turno == 1){ //turnoCompu            
-            llamaLisp();
+            llamaMain();
         }
     }
 
@@ -1851,7 +1855,7 @@ public class Juego extends javax.swing.JFrame  {
     
     public void cambiaTurno(JButton j){
         //vamos a llamar a método de LuisFe
-        System.out.println("Llamando método LuisFe...");
+        //System.out.println("Llamando método LuisFe...");
         EscribirArchivo esc = new EscribirArchivo(matriz, nivel);
         esc.creaArchivo();  
         
@@ -1860,7 +1864,17 @@ public class Juego extends javax.swing.JFrame  {
             turnoName.setText("Computadora");
             turnoIcon.setIcon(cambiaIcono(fant));
             turno = 1;            
-            llamaLisp(); 
+            llamaMain(); 
+            esc = new EscribirArchivo(matriz, nivel);
+            esc.creaArchivo();
+            String termino = llamaTermina().trim();
+        if("T".equals(termino)){
+            if(turno == 1){
+                ganaHumano();
+            }else{
+                ganaCompu();
+            }
+        }
         }else{
             
             botX(cambiaIcono(fant), j);
@@ -1873,7 +1887,7 @@ public class Juego extends javax.swing.JFrame  {
         
     }
     
-    public void llamaLisp() {
+    public void llamaMain() {
         try {
             ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main.lisp");
             builder.redirectErrorStream(true);
@@ -1899,6 +1913,35 @@ public class Juego extends javax.swing.JFrame  {
             turnoCompu(parseInt(cosas[i -1].trim()));
         } catch (IOException ex) {
             Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public String llamaTermina() {
+        System.out.println("ESTOY EN TERMINA");
+        String cosa = "";
+        try {
+            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\seTermino.lisp");
+            builder.redirectErrorStream(true);
+            Process process;
+
+                process = builder.start();
+
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+            String line = null;
+            
+            while ((line = reader.readLine()) != null) {
+               cosa = line;
+            }
+            System.out.println("cosa: " + cosa);
+            
+            System.out.println();
+            return cosa;
+            //turnoCompu(parseInt(cosas[i -1].trim()));
+        } catch (IOException ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
         }
     }
     
@@ -1981,6 +2024,7 @@ public class Juego extends javax.swing.JFrame  {
         System.out.println("===============================");
     }
     
+    /*
     public void checaColumna(int col){ //col va de 0 a 6        
         int fila = 0;
             imprimeMat();
@@ -2004,12 +2048,59 @@ public class Juego extends javax.swing.JFrame  {
             }
         }
     }
+*/
+    public void checaColumna(int col){ //col va de 0 a 6    
+        int fila = 0;
+        
+        boolean sigue = true;
+        
+        while(sigue){
+            if(fila < 6){
+                if(matriz[fila][col] != -1){ // hay algo
+                    fila ++;
+                }else{
+                    sigue = false;
+                }
+            }else{
+               sigue = false;
+            }
+        }
+        System.out.println("Fila: "+fila);
+        tira(col,fila);
+    }
+    
+    public void tira(int col, int fila){
+        matriz[fila][col] = turno;
+        String termino = llamaTermina().trim();
+        if("T".equals(termino)){
+            if(turno == 1){
+                ganaHumano();
+            }else{
+                ganaCompu();
+            }
+        }else{
+            cambiaTurno(matrizBotones[5-fila][col]);
+        }
+        
+        
+    }
     
     public void ganaHumano(){
         for(int i = 0; i < 6; i++){
             for(int j = 0; j < 7; j++){
                 if(matriz[i][j]==1){
-                    
+                    botX(cambiaIcono(fantAzul),matrizBotones[5-i][j]);
+                }
+            }
+        }
+    }
+    
+    public void ganaCompu(){
+        System.out.println("GANA COMPU");
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                if(matriz[i][j]==0){
+                    botX(cambiaIcono(pacD),matrizBotones[5-i][j]);
                 }
             }
         }
