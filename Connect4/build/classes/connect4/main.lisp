@@ -80,10 +80,10 @@
 (setq tableroP (make-array '(6 7) :initial-contents 
 	'((r   a   r   r   a   a   nil)
 	  (nil r   a   r   r   a   nil)
-	  (nil r   a   r   r   nil nil)
-	  (nil a   a   a   nil   nil nil)
-	  (nil nil a   nil nil   nil nil)
-	  (nil nil nil nil nil   nil nil))))
+	  (nil r   a   nil   r   nil nil)
+	  (nil a   a   nil nil nil nil)
+	  (nil nil nil nil nil nil nil)
+	  (nil nil nil nil nil nil nil))))
 
  (defun copy-array (array)
  (let ((dims (array-dimensions array)))
@@ -486,18 +486,32 @@
 	 	((equal (car (car lst)) maxim) (cadar lst))
 	 	(T (dameRes maxim (cdr lst)))))
 
-(defun parche (tablero)
-	(let ((col 0) (esT nil))
+(defun sobrevive (tablero)
+	(let ((col 0) (colGana nil) (colPierde nil) (gana nil) (pierde nil))
 		(loop 
-			(when (< 6 col) (return nil))
-			(setq esT (car (generaMov (list nil fichaYo tablero) col fichaYo)))
-			(setq esT (or esT (car (generaMov (list nil fichaOp tablero) col fichaOp)) ))
-			(when esT ( return col))
+			(when (or gana (< 6 col)) (return ))
+			(setq gana (or gana (car (generaMov (list nil fichaYo tablero) col fichaYo))))
+			(when gana (setq colGana col))
 			(incf col)
 
-			)))
+			)
+		(setq col 0)
+		(loop 
+			(when (or pierde (< 6 col)) (return ))
+			(setq pierde (or pierde (car (generaMov (list nil fichaOp tablero) col fichaOp))))
+			(when pierde (setq colPierde col))
+			(incf col)
 
-;(print (parche tableroP))
+			)
+		;(print gana)
+		;(print pierde)
+	(cond 
+		(gana colGana)
+		(pierde colPierde)
+		(T nil)))
+	)
+
+;(print (sobrevive tableroP))
 
 (defun yaSeAcabo (tablero ficha)
 	(let ((col 0) (esT nil))
@@ -539,7 +553,7 @@
 ; (setq resGlobal '())
 ; (setq resGlobal (yaMeGanaron tableroIni))
 
-(setq resGlobal (parche tableroIni))
+(setq resGlobal (sobrevive tableroIni))
 
 (if (null resGlobal) (print  (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) 
 	(reverse sigMov)) ) (print resGlobal))

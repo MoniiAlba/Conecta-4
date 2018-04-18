@@ -1861,26 +1861,41 @@ public class Juego extends javax.swing.JFrame  {
         
         if(turno == 0){
             botX(cambiaIcono(pac), j);
-            turnoName.setText("Computadora");
-            turnoIcon.setIcon(cambiaIcono(fant));
-            turno = 1;            
-            llamaMain(); 
             esc = new EscribirArchivo(matriz, nivel);
             esc.creaArchivo();
             String termino = llamaTermina().trim();
-        if("T".equals(termino)){
-            if(turno == 1){
-                ganaHumano();
+            if("T".equals(termino)){
+                if(turno == 0){
+                    ganaHumano();
+                }else{
+                    ganaCompu();
+                }
             }else{
-                ganaCompu();
+                
+                turnoName.setText("Computadora");
+                turnoIcon.setIcon(cambiaIcono(fant));
+                turno = 1;            
+                llamaMain(); 
             }
-        }
+            
+            
         }else{
             
             botX(cambiaIcono(fant), j);
-            turnoName.setText("Jugador");
-            turnoIcon.setIcon(cambiaIcono(pac));
-            turno = 0;
+            esc = new EscribirArchivo(matriz, nivel);
+            esc.creaArchivo();
+            String termino = llamaTermina().trim();
+            if("T".equals(termino)){
+                if(turno == 0){
+                    ganaHumano();
+                }else{
+                    ganaCompu();
+                }
+            }else{
+                turnoName.setText("Jugador");
+                turnoIcon.setIcon(cambiaIcono(pac));
+                turno = 0;
+            }
         }
         imprimeMat();
         
@@ -2094,7 +2109,7 @@ public class Juego extends javax.swing.JFrame  {
             }
         }
         GameOver g = new GameOver(turno, this);
-            g.setVisible(true);
+        g.setVisible(true);
     }
     
     public void ganaCompu(){
