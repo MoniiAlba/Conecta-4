@@ -10,9 +10,9 @@ package connect4;
  * @author Luigi
  */
 public class TareaIA {
-    
-    public TareaIA(){
-        
+    public static int nivel;
+    public TareaIA(int niv){
+        nivel = niv;
     }
     
     public String matJavaLisp(int[][] matriz){
@@ -39,7 +39,9 @@ public class TareaIA {
         sb.insert(0, "(setq tableroIni (make-array '(6 7) :initial-contents " +
 "	'");
         sb.append("))");
-        sb.append("(print tableroIni)");
+        //sb.append("(print tableroIni)");
+        sb.append("(setq depth "+nivel+")");
+        sb.append("(print depth)");
         
         return sb.toString();
     }

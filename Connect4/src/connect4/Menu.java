@@ -98,17 +98,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
-	iniciaConnect(1);
+	iniciaConnect(2);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         dispose();
-	iniciaConnect(2);
+	iniciaConnect(3);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         dispose();
-	iniciaConnect(3);
+	iniciaConnect(6);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

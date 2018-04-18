@@ -8,6 +8,14 @@ package connect4;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +28,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class Juego extends javax.swing.JFrame  {
     private static int nivel = 0;
-    private static int numJugadas = 0;
+    //private static int numJugadas = 0;
     public ImageIcon icono = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("circ.png")));
     public ImageIcon fant = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ghost.png")));
     public ImageIcon pac = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pac.png")));
@@ -56,6 +64,9 @@ public class Juego extends javax.swing.JFrame  {
                                                 {jB00,jB01,jB02,jB03,jB04,jB05,jB06}
                                             };
         //los nombres de los botones están al volteados
+        if(turno == 1){ //turnoCompu            
+            llamaLisp();
+        }
     }
 
     /**
@@ -1765,13 +1776,13 @@ public class Juego extends javax.swing.JFrame  {
         initComponents();
         String tit = "";
         switch (nivel){
-            case 1:
+            case 2:
                 tit = " - Fácil";
                 break;
-            case 2:
+            case 3:
                 tit = " - Normal";
                 break;
-            case 3:
+            case 6:
                 tit = " - Difícil";
                 break;
 
@@ -1791,12 +1802,14 @@ public class Juego extends javax.swing.JFrame  {
     /**
      * @param args the command line arguments
      */
+    /*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1815,7 +1828,7 @@ public class Juego extends javax.swing.JFrame  {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form */ /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Juego j = new Juego();
@@ -1827,6 +1840,7 @@ public class Juego extends javax.swing.JFrame  {
         });
     }
     
+*/
     public ImageIcon cambiaIcono(ImageIcon i){        
         Image img = i.getImage();
         Image newimg = img.getScaledInstance( 80, 80,  java.awt.Image.SCALE_SMOOTH ) ;  
@@ -1835,11 +1849,17 @@ public class Juego extends javax.swing.JFrame  {
     }
     
     public void cambiaTurno(JButton j){
+        //vamos a llamar a método de LuisFe
+        System.out.println("Llamando método LuisFe...");
+        EscribirArchivo esc = new EscribirArchivo(matriz, nivel);
+        esc.creaArchivo();  
+        
         if(turno == 0){
             botX(cambiaIcono(pac), j);
             turnoName.setText("Computadora");
             turnoIcon.setIcon(cambiaIcono(fant));
-            turno = 1;
+            turno = 1;            
+            llamaLisp(); 
         }else{
             
             botX(cambiaIcono(fant), j);
@@ -1849,10 +1869,41 @@ public class Juego extends javax.swing.JFrame  {
         }
         imprimeMat();
         
-        //vamos a llamar a método de LuisFe
-        System.out.println("Llamando método LuisFe...");
-        EscribirArchivo esc = new EscribirArchivo(matriz);
-        esc.creaArchivo();
+        
+    }
+    
+    public void llamaLisp() {
+        try {
+            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main.lisp");
+            builder.redirectErrorStream(true);
+            Process process;
+
+                process = builder.start();
+
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+            String line = null;
+            String [] cosas = new String[10];
+            int i=0;
+            while ((line = reader.readLine()) != null) {
+               cosas[i] = line;
+               i++;
+            }
+            System.out.println("cosas: ");
+            for(int j = 0; j < i; j++){
+                System.out.print(cosas[j] + " , ");
+            }
+            System.out.println();
+            turnoCompu(parseInt(cosas[i -1].trim()));
+        } catch (IOException ex) {
+            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void turnoCompu(int col){
+        System.out.println("Columna " +col);
+        checaColumna(col);
     }
     
     public void botX(ImageIcon x, JButton a){
@@ -1931,6 +1982,7 @@ public class Juego extends javax.swing.JFrame  {
     
     public void checaColumna(int col){ //col va de 0 a 6        
         int fila = 0;
+            imprimeMat();
         if(matriz[fila][col] == -1){ // no hay nada
             //ponemos algo
             matriz[fila][col] = turno;

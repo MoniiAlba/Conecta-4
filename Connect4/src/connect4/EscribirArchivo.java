@@ -22,6 +22,7 @@ public class EscribirArchivo {
     
     private static final String FILENAME = "matriz.txt";
     public int [][] megaMatriz;
+    public static int nivel = 2;
     
     
     
@@ -29,12 +30,13 @@ public class EscribirArchivo {
         megaMatriz = new int [6][7];
     }
     
-    public EscribirArchivo(int [][] nuevaMat){
+    public EscribirArchivo(int [][] nuevaMat, int niv){
         megaMatriz = nuevaMat;
+        nivel = niv;
     }
     
     public void creaArchivo(){
-        TareaIA t = new TareaIA();
+        TareaIA t = new TareaIA(nivel);
         
         BufferedWriter bw = null;
 	FileWriter fw = null;
@@ -50,7 +52,7 @@ public class EscribirArchivo {
 
 		bw.write(content);
 
-		System.out.println("Done");
+		//System.out.println("Done");
 
 		} catch (IOException e) {
 
@@ -76,7 +78,7 @@ public class EscribirArchivo {
 
     
     
-    System.out.println(t.matJavaLisp(megaMatriz));
+    //System.out.println(t.matJavaLisp(megaMatriz));
     }
 
     
@@ -89,7 +91,7 @@ public class EscribirArchivo {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        TareaIA t = new TareaIA();
+        TareaIA t = new TareaIA(nivel);
         
         BufferedWriter bw = null;
 	FileWriter fw = null;
