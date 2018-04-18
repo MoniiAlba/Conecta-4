@@ -1889,7 +1889,7 @@ public class Juego extends javax.swing.JFrame  {
     
     public void llamaMain() {
         try {
-            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main.lisp");
+            ProcessBuilder builder = new ProcessBuilder("clisp", System.getProperty("user.dir")+"\\src\\connect4\\main.lisp");
             builder.redirectErrorStream(true);
             Process process;
 
@@ -1920,7 +1920,7 @@ public class Juego extends javax.swing.JFrame  {
         System.out.println("ESTOY EN TERMINA");
         String cosa = "";
         try {
-            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\seTermino.lisp");
+            ProcessBuilder builder = new ProcessBuilder("clisp",System.getProperty("user.dir")+"\\src\\connect4\\seTermino.lisp");
             builder.redirectErrorStream(true);
             Process process;
 
@@ -2093,6 +2093,8 @@ public class Juego extends javax.swing.JFrame  {
                 }
             }
         }
+        GameOver g = new GameOver(turno, this);
+            g.setVisible(true);
     }
     
     public void ganaCompu(){
@@ -2104,6 +2106,8 @@ public class Juego extends javax.swing.JFrame  {
                 }
             }
         }
+        GameOver g = new GameOver(turno, this);
+            g.setVisible(true);
     }
   
 

@@ -1,4 +1,4 @@
-;;VARIBLES GLOBALES
+ ;;VARIBLES GLOBALES
 (load 'matriz.txt)
 (setq sigMov nil)
 (setq mInfinto -1000000)
