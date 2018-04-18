@@ -2003,6 +2003,10 @@ public class Juego extends javax.swing.JFrame  {
             }
         }
     }
+    
+    public void ganaHumano(){
+        
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
