@@ -32,6 +32,7 @@ public class Juego extends javax.swing.JFrame  {
     public ImageIcon icono = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("circ.png")));
     public ImageIcon fant = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ghost.png")));
     public ImageIcon pac = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pac.png")));
+    public ImageIcon fantAzul = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("blue.png")));
     public ImageIcon red = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("r.png")));
     public ImageIcon yell = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("y.png")));
     public ImageIcon help = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pregunta.png")));
@@ -1874,7 +1875,7 @@ public class Juego extends javax.swing.JFrame  {
     
     public void llamaLisp() {
         try {
-            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main2.lisp");
+            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main.lisp");
             builder.redirectErrorStream(true);
             Process process;
 
@@ -2005,7 +2006,13 @@ public class Juego extends javax.swing.JFrame  {
     }
     
     public void ganaHumano(){
-        
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                if(matriz[i][j]==1){
+                    
+                }
+            }
+        }
     }
   
 
