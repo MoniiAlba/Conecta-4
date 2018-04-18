@@ -1,5 +1,5 @@
 ;;VARIBLES GLOBALES
-(load 'matriz.txt)
+;(load 'matriz.txt)
 (setq sigMov nil)
 (setq mInfinto -1000000)
 (setq infinito  1000000)
@@ -81,8 +81,8 @@
 	'((r   a   r   r   a   a   nil)
 	  (nil r   a   r   r   a   nil)
 	  (nil r   a   r   r   nil nil)
-	  (nil a   nil a   nil   nil nil)
-	  (nil nil nil nil  nil   nil nil)
+	  (nil a   a   a   nil   nil nil)
+	  (nil nil a   nil nil   nil nil)
 	  (nil nil nil nil nil   nil nil))))
 
  (defun copy-array (array)
@@ -410,7 +410,7 @@
 			(setq res (- res (heuristicaDiagCres tablero fichaOp 2)))
 			(setq res (- res (heuristicaDiagDec tablero fichaOp 2)))
 			res))
-(print (heuristica (list nil 'r tableroP)))
+;(print (heuristica (list nil 'r tableroP)))
 
 ;;Inserta ficha en i-esima columna
 ;;Nodo es un tablero
@@ -496,7 +496,20 @@
 			(incf col)
 
 			)))
+
 ;(print (parche tableroP))
+
+(defun yaSeAcabo (tablero ficha)
+	(let ((col 0) (esT nil))
+		(loop 
+			(when (or esT (< 6 col)) (return esT))
+			(cond
+				((null (aref tablero 0 col)) (setq esT nil))
+				(T (setq esT (esTerminalTablero tablero col ficha))))
+			(incf col)
+
+			)))
+;(print (yaMeGanaron tableroP))
 
 ;Conecta Cuatro
 (setq sigMin nil)
@@ -523,8 +536,13 @@
 ;(print (generaMov (list nil 'a tableroIni) 4 'r))
 
 ;;ESTE ES LA LLAMADA IMPORTANTE
+; (setq resGlobal '())
+; (setq resGlobal (yaMeGanaron tableroIni))
+
 (setq resGlobal (parche tableroIni))
-(if (null resGlobal) (print (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) (reverse sigMov))) (print resGlobal))
+
+(if (null resGlobal) (print  (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) 
+	(reverse sigMov)) ) (print resGlobal))
 
 
 
