@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class Juego extends javax.swing.JFrame  {
     private static int nivel = 0;
+    private static int numJugadas = 0;
     public ImageIcon icono = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("circ.png")));
     public ImageIcon fant = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ghost.png")));
     public ImageIcon pac = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("pac.png")));
@@ -54,6 +55,7 @@ public class Juego extends javax.swing.JFrame  {
                                                 {jB10,jB11,jB12,jB13,jB14,jB15,jB16},
                                                 {jB00,jB01,jB02,jB03,jB04,jB05,jB06}
                                             };
+        //los nombres de los botones están al volteados
     }
 
     /**
@@ -1839,12 +1841,18 @@ public class Juego extends javax.swing.JFrame  {
             turnoIcon.setIcon(cambiaIcono(fant));
             turno = 1;
         }else{
+            
             botX(cambiaIcono(fant), j);
             turnoName.setText("Jugador");
             turnoIcon.setIcon(cambiaIcono(pac));
             turno = 0;
         }
         imprimeMat();
+        
+        //vamos a llamar a método de LuisFe
+        System.out.println("Llamando método LuisFe...");
+        EscribirArchivo esc = new EscribirArchivo(matriz);
+        esc.creaArchivo();
     }
     
     public void botX(ImageIcon x, JButton a){
@@ -1922,19 +1930,19 @@ public class Juego extends javax.swing.JFrame  {
     }
     
     public void checaColumna(int col){ //col va de 0 a 6        
-        int fila = 5;
+        int fila = 0;
         if(matriz[fila][col] == -1){ // no hay nada
             //ponemos algo
             matriz[fila][col] = turno;
-            cambiaTurno(matrizBotones[fila][col]);
+            cambiaTurno(matrizBotones[5-fila][col]);
         }else{
             boolean sigue=true;
             while(sigue){
-                if(fila>0){
-                    fila--;
+                if(fila<5){
+                    fila++;
                     if(matriz[fila][col]==-1){ //no hay algo                     
                         matriz[fila][col] = turno;
-                        cambiaTurno(matrizBotones[fila][col]);
+                        cambiaTurno(matrizBotones[5-fila][col]);
                         sigue = false;
                     }
                 }else{

@@ -1,0 +1,1 @@
+(setq tableroIni (make-array '(6 7) :initial-contents 	'((r r r a a nil nil )(r a a a a nil nil )(r nil a r r nil nil )(a nil nil a nil nil nil )(r nil nil nil nil nil nil )(r nil nil nil nil nil nil ))))(print tableroIni)
