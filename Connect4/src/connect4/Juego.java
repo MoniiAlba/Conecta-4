@@ -1776,13 +1776,13 @@ public class Juego extends javax.swing.JFrame  {
         initComponents();
         String tit = "";
         switch (nivel){
-            case 2:
+            case 1:
                 tit = " - Fácil";
                 break;
-            case 3:
+            case 4:
                 tit = " - Normal";
                 break;
-            case 6:
+            case 5:
                 tit = " - Difícil";
                 break;
 
@@ -1874,7 +1874,7 @@ public class Juego extends javax.swing.JFrame  {
     
     public void llamaLisp() {
         try {
-            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main.lisp");
+            ProcessBuilder builder = new ProcessBuilder("clisp","C:\\Users\\soeur\\Documents\\NetBeansProjects\\IA\\Connect4\\src\\connect4\\main2.lisp");
             builder.redirectErrorStream(true);
             Process process;
 

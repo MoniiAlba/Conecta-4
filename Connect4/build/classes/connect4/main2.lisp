@@ -1,5 +1,5 @@
 ;;VARIBLES GLOBALES
-(load 'matriz.txt)
+ (load 'matriz.txt)
 (setq sigMov nil)
 (setq mInfinto -1000000)
 (setq infinito  1000000)
@@ -77,13 +77,13 @@
 
 ;(setq tablero (make-array '(6 7)))
 (setq diag nil)
-(setq tableroP (make-array '(6 7) :initial-contents 
-	'((r   a   r   r   a   a   nil)
-	  (nil r   a   r   r   a   nil)
-	  (nil r   a   r   r   nil nil)
-	  (nil a   nil a   nil   nil nil)
-	  (nil nil nil nil  nil   nil nil)
-	  (nil nil nil nil nil   nil nil))))
+; (setq tableroP (make-array '(6 7) :initial-contents 
+; 	'((r   a   r   r   a   a   nil)
+; 	  (nil r   a   r   r   a   nil)
+; 	  (nil r   a   r   r   nil nil)
+; 	  (nil r   r   a   r   nil nil)
+; 	  (nil nil nil r   a   nil nil)
+; 	  (nil nil nil nil r   nil nil))))
 
  (defun copy-array (array)
  (let ((dims (array-dimensions array)))
@@ -269,6 +269,44 @@
 ; (print `(,ren ,col))
 ; (print (buscaNDiagCres tableroP ren col 'r 4))
 
+(defun buscaNDiagCresP (tablero ren col ficha numFichas)
+	(let (  (j 0)
+		(act nil) (descartado nil) (cont 0) (i 0) (res 0)
+		(termina nil) (colA 0) (renA 0) (p 15) ) 
+		(loop 
+			(when termina (return res))
+			;(when (> col 3) (return res))
+			(setq j 0)
+			(setq descartado nil)
+			(setq cont 0)
+			(setq colA col)
+			(setq renA ren)
+			(loop
+				(when (> j 3) (return))
+				(setq renA (+ ren j) )
+				(setq colA (+ col j) )
+				;(print `(,renA ,colA))
+				(if (or (> colA 6) (> renA 5)) (setq termina T) (setq act (aref tablero renA colA)))
+				;(print act)
+				(when (or descartado termina )
+					(return))
+				(cond
+					((null act))
+					(( not (equal act ficha) ) (setq descartado T))
+					(T (incf cont)))
+				(incf j))
+			;(print p)
+			(when (and (not descartado) (not termina) (= cont numFichas)) (setq res (+ res p)))
+			(decf p)
+			(incf col)
+			(incf ren))))
+; (print tableroP)
+; (setq ren 3)
+; (setq col 0)
+; (print 'buscaNDiagCresP)
+; (print `(,ren ,col))
+; (print (buscaNDiagCresP tableroP ren col 'r 4))
+
 (defun buscaNDiagDec (tablero ren col ficha numFichas)
 	(let (  (j 0)
 		(act nil) (descartado nil) (cont 0) (i 0) (res 0)
@@ -305,6 +343,44 @@
 ; (print `(,ren ,col))
 ; (print (buscaNDiagDec tableroP ren col 'r 4))
 
+(defun buscaNDiagDecP (tablero ren col ficha numFichas)
+	(let (  (j 0)
+		(act nil) (descartado nil) (cont 0) (i 0) (res 0)
+		(termina nil) (colA 0) (renA 0) (p 12)) 
+		(loop 
+			(when termina (return res))
+			;(when (> col 3) (return res))
+			(setq j 0)
+			(setq descartado nil)
+			(setq cont 0)
+			(setq colA col)
+			(setq renA ren)
+			(loop
+				(when (> j 3) (return))
+				(setq renA (- ren j) )
+				(setq colA (+ col j) )
+				;(print `(,renA ,colA))
+				(if (or (> colA 6) (< renA 0)) (setq termina T) (setq act (aref tablero renA colA)))
+				;(print act)
+				(when (or descartado termina )
+					(return))
+				(cond
+					((null act))
+					(( not (equal act ficha) ) (setq descartado T))
+					(T (incf cont)))
+				(incf j))
+			;(print p)
+			(when (and (not descartado) (not termina) (= cont numFichas)) (setq res (+ res p)))
+			(incf p)
+			(incf col)
+			(decf ren))))
+; (print tableroP)
+; (setq ren 5)
+; (setq col 0)
+; (print 'buscaNDiagDec)
+; (print `(,ren ,col))
+; (print (buscaNDiagDecP tableroP ren col 'r 4))
+
 ;col es la columna donde se hizo la ultima 
 ; inserción
 (defun esTerminalTablero (tablero col ficha)
@@ -322,85 +398,65 @@
 ; (print (esTerminalTablero tableroP col 'r))
 
 (defun heuristicaCol (tablero ficha numFichas)
-	(let ((i 0) (res 0) (aux 0))
+	(let ((i 0) (res 0) (aux 0) (p 0) (shift 1))
 		(loop
 			(when (< 6 i) (return res))
 			(setq aux (buscaNCol tablero i ficha numFichas))
 			;(print aux)
-			(setq res (+ res aux))
+			(when (> i 3) (setq shift -1))
+			(setq p (+ p shift))
+			;(print p)
+			(setq res (+ res (* aux  p )))
 			(incf i))))
-;(print tableroP)
+; (print tableroP)
 ; (setq numFichas 2)
 ; (print (heuristicaCol tableroP 'r numFichas))
-;(print (buscaNCol tableroP 4 'r 3))
+; (print (buscaNCol tableroP 4 'r 3))
 
 (defun heuristicaRen (tablero ficha numFichas)
-	(let ((i 0) (res 0) (aux 0))
+	(let ((i 0) (res 0) (aux 0) (p 0))
 		(loop
 			(when (< 5 i) (return res))
 			(setq aux (buscaNRen tablero i ficha numFichas))
 			;(print aux)
-			(setq res (+ res aux))
+			;(print (+ (- 5 p) 1))
+			(setq res (+ res (* aux (+ (- 5 p) 1))))
+			(incf p)
 			(incf i))))
 ; (setq numFichas 2)
-; (print numFichas)
+; ;(print numFichas)
 ; (print (heuristicaRen tableroP 'r numFichas))
 ;(print (buscaNRen tableroP 4 'r 3))
 
 (defun heuristicaDiagCres (tablero ficha numFichas)
 	(let ((diagC '((2 0) (1 0) (0 0) (0 1) (0 2) (0 3))))
 		(apply '+ (mapcar (lambda (parOrd) 
-					(buscaNDiagCres tablero (car parOrd) (cadr parOrd) ficha numFichas)) diagC))))
+					(buscaNDiagCresP tablero (car parOrd) (cadr parOrd) ficha numFichas)) diagC))))
 
 ;(print (heuristicaDiagCres tableroP 'r 3))
 
 (defun heuristicaDiagDec (tablero ficha numFichas)
 	(let ((diagD '((3 0) (4 0) (5 0) (5 1) (5 2) (5 3))))
 		(apply '+ (mapcar (lambda (parOrd) 
-			(buscaNDiagDec tablero (car parOrd) (cadr parOrd) ficha numFichas)) diagD))))
+			(buscaNDiagDecP tablero (car parOrd) (cadr parOrd) ficha numFichas)) diagD))))
 ;(print (heuristicaDiagDec tableroP 'r 2))
 
-; (defun heuristica (nodo)
-; 	(cond
-; 		((car nodo)
-; 			(cond
-; 				((equal fichaYo (cadr nodo)) infinito)
-; 				(T mInfinto)))
-; 		(T (let ((res 0) (tablero (caddr nodo)))
-; 			(setq res (+ res (heuristicaCol tablero fichaYo 3)))
-; 			(setq res (+ res (heuristicaRen tablero fichaYo 3)))
-; 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 3)))
-; 			(setq res (+ res (heuristicaDiagDec tablero fichaOp 3)))
-; 			(setq res (- res (heuristicaCol tablero fichaOp 3)))
-; 			(setq res (- res (heuristicaRen tablero fichaOp 3)))
-; 			(setq res (- res (heuristicaDiagCres tablero fichaOp 3)))
-; 			(setq res (- res (heuristicaDiagDec tablero fichaOp 3)))
-; 			(setq res (+ res (heuristicaCol tablero fichaYo 2)))
-; 			(setq res (+ res (heuristicaRen tablero fichaYo 2)))
-; 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 2)))
-; 			(setq res (+ res (heuristicaDiagDec tablero fichaOp 2)))
-; 			(setq res (- res (heuristicaCol tablero fichaOp 2)))
-; 			(setq res (- res (heuristicaRen tablero fichaOp 2)))
-; 			(setq res (- res (heuristicaDiagCres tablero fichaOp 2)))
-; 			(setq res (- res (heuristicaDiagDec tablero fichaOp 2)))
-; 			res))))
-
 (defun heuristica (nodo)
-		 (let ((res 0) (tablero (caddr nodo)))
-		 	(cond
-		 		((car nodo)
-		 			(cond
-		 				((equal fichaYo (cadr nodo)) (setq res (+ res infinito)))
-		 				(T (setq res (+ res mInfinto))))))
-			(setq res (+ res (heuristicaCol tablero fichaYo 3)))
-			(setq res (+ res (heuristicaRen tablero fichaYo 3)))
+	(cond
+		((car nodo)
+			(cond
+				((equal fichaYo (cadr nodo)) infinito)
+				(T mInfinto)))
+		(T (let ((res 0) (tablero (caddr nodo)))
+			 (setq res (+ res (heuristicaCol tablero fichaYo 3)))
+			 (setq res (+ res (heuristicaRen tablero fichaYo 3)))
 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 3)))
 			(setq res (+ res (heuristicaDiagDec tablero fichaOp 3)))
 			(setq res (- res (heuristicaCol tablero fichaOp 3)))
-			(setq res (- res (heuristicaRen tablero fichaOp 3)))
+			 (setq res (- res (heuristicaRen tablero fichaOp 3)))
 			(setq res (- res (heuristicaDiagCres tablero fichaOp 3)))
 			(setq res (- res (heuristicaDiagDec tablero fichaOp 3)))
-			(setq res (* res 6))
+			(setq res (+ res 3))
 			(setq res (+ res (heuristicaCol tablero fichaYo 2)))
 			(setq res (+ res (heuristicaRen tablero fichaYo 2)))
 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 2)))
@@ -409,8 +465,8 @@
 			(setq res (- res (heuristicaRen tablero fichaOp 2)))
 			(setq res (- res (heuristicaDiagCres tablero fichaOp 2)))
 			(setq res (- res (heuristicaDiagDec tablero fichaOp 2)))
-			res))
-(print (heuristica (list nil 'r tableroP)))
+			res))))
+;(print (heuristica (list nil 'r tableroP)))
 
 ;;Inserta ficha en i-esima columna
 ;;Nodo es un tablero
@@ -481,11 +537,6 @@
 ; (print (alphaBeta '(1 -1 2 3 4) depth mInfinto infinito t ))
 ; (print arbol2)
 
-(defun dameRes (maxim lst)
-	 (cond
-	 	((equal (car (car lst)) maxim) (cadar lst))
-	 	(T (dameRes maxim (cdr lst)))))
-
 (defun parche (tablero)
 	(let ((col 0) (esT nil))
 		(loop 
@@ -496,18 +547,21 @@
 			(incf col)
 
 			)))
-;(print (parche tableroP))
 
+(defun dameRes (maxim lst)
+	 (cond
+	 	((equal (car (car lst)) maxim) (cadar lst))
+	 	(T (dameRes maxim (cdr lst)))))
 ;Conecta Cuatro
-(setq sigMin nil)
-; (setq depth 4)
+; (setq sigMin nil)
+;  (setq depth 4)
 ; (setq tableroIni (make-array '(6 7) :initial-contents 
-; 	'((r   r  r   a   a   nil nil)
-; 	  (r   nil a   a   a   nil nil)
-; 	  (r   nil a   r   r   nil nil)
-; 	  (a   nil nil a   nil nil nil)
-; 	  (r   nil nil nil nil nil nil)
-; 	  (r   nil nil nil nil nil nil))))
+; 	'((a   nil r   r   a   nil r)
+; 	  (a   nil a   a   a   nil a)
+; 	  (r   nil r   r   r   nil r)
+; 	  (a   nil r   r   a   nil a)
+; 	  (r   nil r   r   r   nil nil)
+; 	  (a   nil a   a   a   nil nil))))
 
 
 ; (setq tableroIni (make-array '(6 7) :initial-contents 
@@ -526,6 +580,7 @@
 (setq resGlobal (parche tableroIni))
 (if (null resGlobal) (print (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) (reverse sigMov))) (print resGlobal))
 
+;(print (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) (reverse sigMov)))
 
 
 ;(print sigMov)

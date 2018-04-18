@@ -77,13 +77,13 @@
 
 ;(setq tablero (make-array '(6 7)))
 (setq diag nil)
-; (setq tableroP (make-array '(6 7) :initial-contents 
-; 	'((r   a   r   r   a   a   nil)
-; 	  (nil r   a   r   r   a   nil)
-; 	  (nil r   a   r   r   nil nil)
-; 	  (nil r   r   a   r   nil nil)
-; 	  (nil nil nil r   a   nil nil)
-; 	  (nil nil nil nil r   nil nil))))
+(setq tableroP (make-array '(6 7) :initial-contents 
+	'((r   a   r   r   a   a   nil)
+	  (nil r   a   r   r   a   nil)
+	  (nil r   a   r   r   nil nil)
+	  (nil a   nil a   nil   nil nil)
+	  (nil nil nil nil  nil   nil nil)
+	  (nil nil nil nil nil   nil nil))))
 
  (defun copy-array (array)
  (let ((dims (array-dimensions array)))
@@ -360,13 +360,38 @@
 			(buscaNDiagDec tablero (car parOrd) (cadr parOrd) ficha numFichas)) diagD))))
 ;(print (heuristicaDiagDec tableroP 'r 2))
 
+; (defun heuristica (nodo)
+; 	(cond
+; 		((car nodo)
+; 			(cond
+; 				((equal fichaYo (cadr nodo)) infinito)
+; 				(T mInfinto)))
+; 		(T (let ((res 0) (tablero (caddr nodo)))
+; 			(setq res (+ res (heuristicaCol tablero fichaYo 3)))
+; 			(setq res (+ res (heuristicaRen tablero fichaYo 3)))
+; 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 3)))
+; 			(setq res (+ res (heuristicaDiagDec tablero fichaOp 3)))
+; 			(setq res (- res (heuristicaCol tablero fichaOp 3)))
+; 			(setq res (- res (heuristicaRen tablero fichaOp 3)))
+; 			(setq res (- res (heuristicaDiagCres tablero fichaOp 3)))
+; 			(setq res (- res (heuristicaDiagDec tablero fichaOp 3)))
+; 			(setq res (+ res (heuristicaCol tablero fichaYo 2)))
+; 			(setq res (+ res (heuristicaRen tablero fichaYo 2)))
+; 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 2)))
+; 			(setq res (+ res (heuristicaDiagDec tablero fichaOp 2)))
+; 			(setq res (- res (heuristicaCol tablero fichaOp 2)))
+; 			(setq res (- res (heuristicaRen tablero fichaOp 2)))
+; 			(setq res (- res (heuristicaDiagCres tablero fichaOp 2)))
+; 			(setq res (- res (heuristicaDiagDec tablero fichaOp 2)))
+; 			res))))
+
 (defun heuristica (nodo)
-	(cond
-		((car nodo)
-			(cond
-				((equal fichaYo (cadr nodo)) infinito)
-				(T mInfinto)))
-		(T (let ((res 0) (tablero (caddr nodo)))
+		 (let ((res 0) (tablero (caddr nodo)))
+		 	(cond
+		 		((car nodo)
+		 			(cond
+		 				((equal fichaYo (cadr nodo)) (setq res (+ res infinito)))
+		 				(T (setq res (+ res mInfinto))))))
 			(setq res (+ res (heuristicaCol tablero fichaYo 3)))
 			(setq res (+ res (heuristicaRen tablero fichaYo 3)))
 			(setq res (+ res (heuristicaDiagCres tablero fichaYo 3)))
@@ -375,16 +400,17 @@
 			(setq res (- res (heuristicaRen tablero fichaOp 3)))
 			(setq res (- res (heuristicaDiagCres tablero fichaOp 3)))
 			(setq res (- res (heuristicaDiagDec tablero fichaOp 3)))
-;			(setq res (+ res (heuristicaCol tablero fichaYo 2)))
-;			(setq res (+ res (heuristicaRen tablero fichaYo 2)))
-;			(setq res (+ res (heuristicaDiagCres tablero fichaYo 2)))
-;			(setq res (+ res (heuristicaDiagDec tablero fichaOp 2)))
-;			(setq res (- res (heuristicaCol tablero fichaOp 2)))
-;			(setq res (- res (heuristicaRen tablero fichaOp 2)))
-;			(setq res (- res (heuristicaDiagCres tablero fichaOp 2)))
-;			(setq res (- res (heuristicaDiagDec tablero fichaOp 2)))
-			res))))
-;(print (heuristica (list nil 'r tableroP)))
+			(setq res (* res 6))
+			(setq res (+ res (heuristicaCol tablero fichaYo 2)))
+			(setq res (+ res (heuristicaRen tablero fichaYo 2)))
+			(setq res (+ res (heuristicaDiagCres tablero fichaYo 2)))
+			(setq res (+ res (heuristicaDiagDec tablero fichaOp 2)))
+			(setq res (- res (heuristicaCol tablero fichaOp 2)))
+			(setq res (- res (heuristicaRen tablero fichaOp 2)))
+			(setq res (- res (heuristicaDiagCres tablero fichaOp 2)))
+			(setq res (- res (heuristicaDiagDec tablero fichaOp 2)))
+			res))
+(print (heuristica (list nil 'r tableroP)))
 
 ;;Inserta ficha en i-esima columna
 ;;Nodo es un tablero
@@ -459,6 +485,19 @@
 	 (cond
 	 	((equal (car (car lst)) maxim) (cadar lst))
 	 	(T (dameRes maxim (cdr lst)))))
+
+(defun parche (tablero)
+	(let ((col 0) (esT nil))
+		(loop 
+			(when (< 6 col) (return nil))
+			(setq esT (car (generaMov (list nil fichaYo tablero) col fichaYo)))
+			(setq esT (or esT (car (generaMov (list nil fichaOp tablero) col fichaOp)) ))
+			(when esT ( return col))
+			(incf col)
+
+			)))
+;(print (parche tableroP))
+
 ;Conecta Cuatro
 (setq sigMin nil)
 ; (setq depth 4)
@@ -484,7 +523,8 @@
 ;(print (generaMov (list nil 'a tableroIni) 4 'r))
 
 ;;ESTE ES LA LLAMADA IMPORTANTE
-(print (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) (reverse sigMov)))
+(setq resGlobal (parche tableroIni))
+(if (null resGlobal) (print (dameRes (alphaBeta (list nil fichaYo tableroIni) depth mInfinto infinito t ) (reverse sigMov))) (print resGlobal))
 
 
 

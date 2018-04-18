@@ -1,1 +1,1 @@
-(setq tableroIni (make-array '(6 7) :initial-contents 	'((r r r a a a r )(nil r a r a nil nil )(nil a r a nil nil nil )(nil nil nil r nil nil nil )(nil nil nil nil nil nil nil )(nil nil nil nil nil nil nil ))))(setq depth 6)(print depth)
+(setq tableroIni (make-array '(6 7) :initial-contents 	'((r a r a a a r )(nil a r r a r a )(nil r nil a r a nil )(nil nil nil r nil nil nil )(nil nil nil nil nil nil nil )(nil nil nil nil nil nil nil ))))(setq depth 5)(print depth)
